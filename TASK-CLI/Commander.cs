@@ -55,7 +55,7 @@ namespace TASK_CLI
 
             bool result = int.TryParse(args[2], out int id);
 
-            if (result == null)
+            if (!result)
             {
                 resultAction = "Error, invalid argument";
                 return;
