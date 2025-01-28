@@ -8,7 +8,7 @@ namespace TASK_CLI
 
         public static string Add(string description)    
         {
-            var id = Repository.Tasks.Last().Id + 1;
+            var id = Repository.GetLastId();
 
             var date = DateOnly.Parse(DateTime.Now.ToString("dd-MM-yyyy"));
 
