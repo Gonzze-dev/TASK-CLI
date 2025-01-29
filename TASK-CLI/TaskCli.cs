@@ -10,7 +10,10 @@ namespace TASK_CLI
     {
         public static void TaskCliApp(string[] args)
         {
-            if (args.Length == 0)
+            var commandLength = args.Length;
+            var resultAction = "";
+
+            if (commandLength == 0 || args[0] != "task-cli")
             {
                 Console.WriteLine("task-cli [command]");
                 Console.WriteLine("Commands:");
@@ -24,14 +27,7 @@ namespace TASK_CLI
                 return;
             }
 
-            string init = args[0];
-            string resultAction = "";
-
-            if (init != "task-cli")
-                return;
-
-            string command = args[1];
-            int commandLength = args.Length;
+            var command = args[1];
 
             if (command == "add" && commandLength == 3)
                 Commander.Add(args, out resultAction);
@@ -45,10 +41,10 @@ namespace TASK_CLI
             else if (command.StartsWith("mark") && commandLength == 3)
                 Commander.Mark(args, out resultAction);
 
-            else if (command == "list" && args.Length == 2)
+            else if (command == "list" && commandLength == 2)
                 Commander.List(out resultAction);
 
-            else if (command == "list" && args.Length == 3)
+            else if (command == "list" && commandLength == 3)
                 Commander.ListBy(args, out resultAction);
 
             Console.WriteLine(resultAction);
